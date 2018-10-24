@@ -46,7 +46,7 @@
 
   > **提示：**当你照着教程做的时候，你可以开一个新的浏览器窗口来看这篇教程。这样你就可以一边看教程一边做了
 
-- **Step 1. Create a Repository**
+- ## **Step 1. Create a Repository**
 
      A **repository** is usually used to organize a single project. Repositories can contain folders and files, images, videos, spreadsheets, and data sets – anything your project needs. We recommend including a *README*, or a file with information about your project. GitHub makes it easy to add one at the same time you create your new repository. *It also offers other common options such as a license file.*
 
@@ -78,7 +78,7 @@
 
   点击创建仓库![:tada:](https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png)
 
-- **Step 2. Create a Branch**
+- ## **Step 2. Create a Branch**
 
      **Branching** is the way to work on different versions of a repository at one time.
 
@@ -143,4 +143,59 @@
 
      1. 进入你的新仓库hello-world
      2. 点击文件列表顶部写着branch:master的下拉表
-     3. 输入分支名，
+     3. 在新分支的文本框中输入分支名“readme-edits”
+     4. 选择蓝色的创建新分支框或者按下回车键
+
+     现在你有了两个分支master和readme-edits。他们看起来一样不过以后就不会了！我们现在在新分支上修改
+
+- ## Step 3. Make and commit changes
+
+     Bravo! Now, you’re on the code view for your `readme-edits` branch, which is a copy of `master`. Let’s make some edits.
+
+     On GitHub, saved changes are called *commits*. Each commit has an associated *commit message*, which is a description explaining why a particular change was made. Commit messages capture the history of your changes, so other contributors can understand what you’ve done and why.
+
+     #### Make and commit changes
+
+     1. Click the `README.md` file.
+     2. Click the  pencil icon in the upper right corner of the file view to edit.
+     3. In the editor, write a bit about yourself.
+     4. Write a commit message that describes your changes.
+     5. Click **Commit changes** button.
+
+     ![commit](https://guides.github.com/activities/hello-world/commit.png)
+
+     These changes will be made to just the README file on your `readme-edits` branch, so now this branch contains content that’s different from `master`.
+
+- 提交一个更改
+
+     1. 点击readme.md文件
+     2. 点击文件视图右上角的铅笔按钮
+     3. 在编辑器中写一些有关于自己的东西
+     4. 写一个提交信息来描述你的更改
+     5. 点击提交更改按钮
+
+     这个更改仅作用于 ``readme-edits``分支，现在，这个分支容纳的内容就和``master``分支不同了
+
+- ## Step 4. Open a Pull Request
+
+     Nice edits! Now that you have changes in a branch off of `master`, you can open a *pull request*.
+
+     Pull Requests are the heart of collaboration on GitHub. When you open a *pull request*, you’re proposing your changes and requesting that someone review and pull in your contribution and merge them into their branch. Pull requests show *diffs*, or differences, of the content from both branches. The changes, additions, and subtractions are shown in green and red.
+
+     As soon as you make a commit, you can open a pull request and start a discussion, even before the code is finished.
+
+     By using GitHub’s [@mention system](https://help.github.com/articles/about-writing-and-formatting-on-github/#text-formatting-toolbar) in your pull request message, you can ask for feedback from specific people or teams, whether they’re down the hall or 10 time zones away.
+
+     You can even open pull requests in your own repository and merge them yourself. It’s a great way to learn the GitHub flow before working on larger projects.
+
+- **步骤四，建立一个pull request**
+
+     写的不错！现在你在master分支以外的分支做了修改。你可以建立一个*pull request*了。
+
+     Pull Request是github协作的核心。当你建立一个pull request的时候，你是在提交你的修改并请求某个人审查，拉取你的贡献并合并到他们的分支中。pull requeset展示了两个分支的*diff*，或者说是"不同"。更改，增加和删除用绿色和红色展示了出来。
+
+     在你提交的同时，你可以建立一个pull request并开始一个讨论。即使你还没完成代码。
+
+     通过在你的pull request中使用github的提示系统[@mention system](https://help.github.com/articles/about-writing-and-formatting-on-github/#text-formatting-toolbar) 不管和他们是共处一室还是在十个时区之外你都可以得到反馈。
+
+     你甚至可以给自己的仓库建立拉取请求然后自己合并。这是一个学习github流程的好方法，在你进入大团队之前。
