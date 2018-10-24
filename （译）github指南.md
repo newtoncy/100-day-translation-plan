@@ -198,4 +198,92 @@
 
      通过在你的pull request中使用github的提示系统[@mention system](https://help.github.com/articles/about-writing-and-formatting-on-github/#text-formatting-toolbar) 不管和他们是共处一室还是在十个时区之外你都可以得到反馈。
 
-     你甚至可以给自己的仓库建立拉取请求然后自己合并。这是一个学习github流程的好方法，在你进入大团队之前。
+     你甚至可以给自己的仓库建立拉取请求然后自己合并。在你进入大团队之前，这是一个学习github流程的好方法。
+
+- #### Open a Pull Request for changes to the README
+
+     *Click on the image for a larger version*
+
+     | Step                                                         | Screenshot                                                   |
+     | ------------------------------------------------------------ | ------------------------------------------------------------ |
+     | Click the  **Pull Request** tab, then from the Pull Request page, click the green **New pull request** button. | [![pr-tab](https://guides.github.com/activities/hello-world/pr-tab.gif)](https://guides.github.com/activities/hello-world/pr-tab.gif) |
+     | In the **Example Comparisons**box, select the branch you made, `readme-edits`, to compare with `master` (the original). | [![branch](https://guides.github.com/activities/hello-world/pick-branch.png)](https://guides.github.com/activities/hello-world/pick-branch.png) |
+     | Look over your changes in the diffs on the Compare page, make sure they’re what you want to submit. | [![diff](https://guides.github.com/activities/hello-world/diff.png)](https://guides.github.com/activities/hello-world/diff.png) |
+     | When you’re satisfied that these are the changes you want to submit, click the big green **Create Pull Request**button. | [![create-pull](https://guides.github.com/activities/hello-world/create-pr.png)](https://guides.github.com/activities/hello-world/create-pr.png) |
+     | Give your pull request a title and write a brief description of your changes. | [![pr-form](https://guides.github.com/activities/hello-world/pr-form.png)](https://guides.github.com/activities/hello-world/pr-form.png) |
+
+     When you’re done with your message, click **Create pull request**!
+
+     ------
+
+     > **Tip**: You can use [emoji](https://help.github.com/articles/basic-writing-and-formatting-syntax/#using-emoji) and [drag and drop images and gifs](https://help.github.com/articles/file-attachments-on-issues-and-pull-requests/) onto comments and Pull Requests.
+
+- #### 建立拉取请求来更改readme
+
+  点击图片获得大图
+
+  | 步骤                                                         | 截屏                                                         |
+  | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | 点击**Pull Request**标签然后在拉取请求页点击绿色的new pull request 按钮 | [![pr-tab](https://guides.github.com/activities/hello-world/pr-tab.gif)](https://guides.github.com/activities/hello-world/pr-tab.gif) |
+  | 在示例比较框？？中选择你的readme-edits,与master比较          | [![branch](https://guides.github.com/activities/hello-world/pick-branch.png)](https://guides.github.com/activities/hello-world/pick-branch.png) |
+  | 在Compare page查看你的更改，确认这是你想要提交的             | [![diff](https://guides.github.com/activities/hello-world/diff.png)](https://guides.github.com/activities/hello-world/diff.png) |
+  | 你很满意你要提交的更改，点击绿色的大按钮**Create Pull Request** | [![create-pull](https://guides.github.com/activities/hello-world/create-pr.png)](https://guides.github.com/activities/hello-world/create-pr.png) |
+  | 为你的提交给一个标题和描述                                   | [![pr-form](https://guides.github.com/activities/hello-world/pr-form.png)](https://guides.github.com/activities/hello-world/pr-form.png) |
+
+  当你写完了你的消息， 点 **Create pull request**!
+
+  ------
+
+  > **Tip**: 你可以加emoji和拖放图片
+
+- ## Request
+
+  In this final step, it’s time to bring your changes together – merging your `readme-edits` branch into the `master`branch.
+
+  1. Click the green **Merge pull request** button to merge the changes into `master`.
+  2. Click **Confirm merge**.
+  3. Go ahead and delete the branch, since its changes have been incorporated, with the **Delete branch** button in the purple box.
+
+  ![merge](https://guides.github.com/activities/hello-world/merge-button.png)![delete](https://guides.github.com/activities/hello-world/delete-button.png)
+
+  ### Celebrate!
+
+  By completing this tutorial, you’ve learned to create a project and make a pull request on GitHub! ![:tada:](https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png) ![:octocat:](https://assets-cdn.github.com/images/icons/emoji/octocat.png) ![:zap:](https://assets-cdn.github.com/images/icons/emoji/unicode/26a1.png)
+
+  Here’s what you accomplished in this tutorial:
+
+  - Created an open source repository
+  - Started and managed a new branch
+  - Changed a file and committed those changes to GitHub
+  - Opened and merged a Pull Request
+
+  Take a look at your GitHub profile and you’ll see your new [contribution squares](https://help.github.com/articles/viewing-contributions)!
+
+  To learn more about the power of Pull Requests, we recommend reading the [GitHub flow Guide](http://guides.github.com/overviews/flow/). You might also visit [GitHub Explore](http://github.com/explore) and get involved in an Open Source project ![:octocat:](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
+
+  ------
+
+  > **Tip**: Check out our other [Guides](http://guides.github.com/), [YouTube Channel](http://youtube.com/githubguides) and [On-Demand Training](https://services.github.com/on-demand/) for more on how to get started with GitHub.
+
+- 步骤5，合并你的拉取请求
+
+  在最后一步，是时候将你的修改合并到主分支了。
+
+  1. 点击**Merge pull request**合并主分支
+  2. 点**Confirm merge**.
+  3. 因为它们已经合并，所以继续并删除分支，删除按钮在紫色框内
+
+  **可喜可贺**！
+
+  完成了这个教程，你已经学会了在github上创建项目，建立拉取请求。
+
+  以下是你在教程中掌握的：
+
+  - 创项目
+  - 建分支
+  - 修改和提交
+  - 拉取请求
+
+  在github个人资料中你会看到一个新贡献
+
+  为了更好的了解拉取请求的强大，我们建议你看一看github流程，你也许想访问github探索，并涉足一个开源项目
