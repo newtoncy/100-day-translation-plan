@@ -38,4 +38,9 @@ tensorflow曾被Brain团队开发用来在谷歌内部使用。它在2015年12�
 
 trensorflow的巨大优势，是它灵活的高度模块化设计，这也同时是一个对于初学者的劣势，因为在建立模块要考虑很多方面。
 
-**今天困，不翻译了**
+这个问题在使用像 [Keras](https://keras.io/) 或者 [Slim](https://github.com/tensorflow/models/blob/031a5a4ab41170d555bc3e8f8545cf9c8e3f1b28/research/inception/inception/slim/README.md) 这种高级api时会更明显，他们抽象了用来设计机器学习算法的很多方面。
+
+有趣的是，最近**哪都可以看见**tensorflow。很多研究者和开发者都在用它，他的社区正在光速发展！所以，很多问题可以简单的找到答案，因为考虑到Tensorflow社区中涉及到非常多的人，有很多人会遇到同样的问题。
+
+## 这个代码仓库的重点是什么
+
