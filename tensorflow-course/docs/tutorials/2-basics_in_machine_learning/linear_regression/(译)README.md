@@ -117,3 +117,4 @@ with tf.Session() as sess:
         # save the values of weight and bias
         wcoeff, bias = sess.run([W, b])
 ```
+
