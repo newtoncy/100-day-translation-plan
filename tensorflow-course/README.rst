@@ -180,13 +180,10 @@ Neural Networks
 +====+===================================+===============================================================================================+==============================================+
 | 8  | *Multi Layer Perceptron*          |`Simple Multi Layer Perceptron`_   / `IPython <MultiLayerPerceptronipython_>`_                 |                                              |
 +----+-----------------------------------+-----------------------------------------------------------------------------------------------+----------------------------------------------+
-| 9  | *Convolutional Neural Network*   | `Simple Convolutional Neural Networks`_                                                       |       `Documentation <Documentationcnn_>`_   |
+| 9  | *Convolutional Neural Network*    | `Simple Convolutional Neural Networks`_                                                       |       `Documentation <Documentationcnn_>`_   |
 +----+-----------------------------------+-----------------------------------------------------------------------------------------------+----------------------------------------------+
-| 10 | *Autoencoder*                    | `Undercomplete Autoencoder <udercompleteautoencodercode_>`_                                   |       `Documentation <Documentationauto_>`_  |
+| 10 | *Recurrent Neural Network*        | `RNN`_  / `IPython <RNNIpython_>`_                                                            |                                              |
 +----+-----------------------------------+-----------------------------------------------------------------------------------------------+----------------------------------------------+
-| 11 | *Recurrent Neural Network*       | `RNN`_  / `IPython <RNNIpython_>`_                                                            |                                              |
-+----+-----------------------------------+-----------------------------------------------------------------------------------------------+----------------------------------------------+
-
 
 .. ~~~~~~~~~~~~
 .. **Welcome**
@@ -272,10 +269,6 @@ Neural Networks
 .. _Simple Multi Layer Perceptron: codes/3-neural_networks/multi-layer-perceptron
 .. _MultiLayerPerceptronipython: codes/3-neural_networks/multi-layer-perceptron/code/train_mlp.ipynb
 
-
-.. _udercompleteautoencodercode: codes/3-neural_networks/undercomplete-autoencoder
-.. _Documentationauto: docs/tutorials/3-neural_network/autoencoder
-
 .. _RNN: codes/3-neural_networks/recurrent-neural-networks/code/rnn.py
 .. _RNNIpython: codes/3-neural_networks/recurrent-neural-networks/code/rnn.py
 
@@ -334,4 +327,3 @@ Acknowledgement
 ================
 
 I have taken huge efforts in this project for hopefully being a small part of TensorFlow world. However, it would not have been plausible without the kind support and help of my friend and colleague `Domenick Poster <https://github.com/vonclites/>`_ for his valuable advices. He helped me for having a better understanding of TensorFlow and my special appreciation goes to him.
-I would also like to thanks `Hadi Kazemi <http://www.hadikazemi.com/>`_ for his contribution to this code for developing `Undercomplete Autoencoders Tutorial <docs/tutorials/3-neural_network/autoencoder>`_.
