@@ -10,7 +10,7 @@ SQLAlchemy是python下的一个对象关系映射（Object Relational Mapper，o
 
 ## 概述
 
-在前面的文章中,我们比较了sqlslchemy和各种其他的python的orm.在这篇文章中我们将深入了解sqlAlchemy的orm和语言上的表达并使用一个示例来展示他们的可用的API和易于理解的Python结构。
+在前面的文章中,我们比较了sqlslchemy和各种其他的python的orm.在这篇文章中我们将深入了解sqlAlchemy的orm和语言上的表达并使用一个示例来展示其可用的API和易于理解的Python结构。
 
 sqlalchemy不仅提供了一种映射关系到对象的方法，还提供了一套方便的适合python的查询api。在一个有sqlachemt的数据库中找一个数据是很愉快的事情，因为每一件事情都直接了当，查询结果通过python对象返回，查询参数也是。
 
@@ -54,4 +54,57 @@ sql是对象关系映射的补充，而orm展示了一个抽象的描述来将�
 >>> Base.metadata.create_all(engine)
 ```
 
-在这个栗子中我们用sqlite数据库在内存中创建了两个表部门和雇员。列‘employee.department_id’是一个外键到列‘department.id’
+在这个栗子中我们用sqlite数据库在内存中创建了两个表部门和雇员。列 ‘employee.department_id’ 是一个到列‘department.id’的外键。同时，关系 ‘department.emplyees’ 包含了所有的部门中的部员。为了测试我们的设置，我们可以简单的插入几个记录作为栗子并通过orm检索出来。
+
+```python
+>>> john = Employee(name='john')
+>>> it_department = Department(name='IT')
+>>> john.department = it_department
+>>> s = session()
+>>> s.add(john)
+>>> s.add(it_department)
+>>> s.commit()
+>>> it = s.query(Department).filter(Department.name == 'IT').one()
+>>> it.employees
+[]
+>>> it.employees[0].name
+u'john'
+```
+
+就像你看到的那样，我们插入了一个部员，john，加入到了it部门。
+
+> 扩展（译者给自己加戏的部分）：
+>
+> 参考链接:https://docs.sqlalchemy.org/en/latest/core/metadata.html#sqlalchemy.schema.Column
+>
+> https://docs.sqlalchemy.org/en/latest/core/constraints.html?highlight=sqlalchemy%20schema%20foreignkey
+>
+> https://docs.sqlalchemy.org/en/latest/orm/relationship_api.htm
+>
+> - Column(\*args, \*\*kwargs)
+>
+>   name -列的名字
+>
+>   type -  类型
+>
+>   \*args-  看不懂
+>
+>   autoincrement- 自增,主键为整形时默认值为"auto",可以设定为True表示自增或设置为False
+>
+>   default - 默认值
+>
+>   index - true或false,是否建索引
+>
+>   nullable - 可为空
+>
+>   primary_key - 是否为主键
+>
+>   unique - 不重复
+>
+> - ForeignKey("表名.列名",...)外键约束
+>
+>   onupdate 和 ondelete - "cascade"级联删除 "restrict"和"no action"不准删 "set null"设为空
+>
+> - relationship
+
+现在，我们用表达式语言来演示一些查询。
