@@ -108,3 +108,132 @@ u'john'
 > - relationship
 
 现在，我们用表达式语言来演示一些查询。
+```python
+>>> from sqlalchemy import select
+>>> find_it = select([Department.id]).where(Department.name == 'IT')
+>>> rs = s.execute(find_it)
+>>> rs
+ 
+>>> rs.fetchone()
+(1,)
+>>> rs.fetchone()  # Only one result is returned from the query, so getting one more returns None.
+>>> rs.fetchone()  # Since the previous fetchone() returned None, fetching more would lead to a result-closed exception
+Traceback (most recent call last):
+  File "", line 1, in 
+  File "/Users/xiaonuogantan/python2-workspace/lib/python2.7/site-packages/sqlalchemy/engine/result.py", line 790, in fetchone
+    self.cursor, self.context)
+  File "/Users/xiaonuogantan/python2-workspace/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1027, in _handle_dbapi_exception
+    util.reraise(*exc_info)
+  File "/Users/xiaonuogantan/python2-workspace/lib/python2.7/site-packages/sqlalchemy/engine/result.py", line 781, in fetchone
+    row = self._fetchone_impl()
+  File "/Users/xiaonuogantan/python2-workspace/lib/python2.7/site-packages/sqlalchemy/engine/result.py", line 700, in _fetchone_impl
+    self._non_result()
+  File "/Users/xiaonuogantan/python2-workspace/lib/python2.7/site-packages/sqlalchemy/engine/result.py", line 724, in _non_result
+    raise exc.ResourceClosedError("This result object is closed.")
+sqlalchemy.exc.ResourceClosedError: This result object is closed.
+>>> find_john = select([Employee.id]).where(Employee.department_id == 1)
+>>> rs = s.execute(find_john)
+ 
+>>> rs.fetchone()  # Employee John's ID
+(1,)
+>>> rs.fetchone()
+```
+
+因为表达式语言提供了类似于后台的sql的低级的python结构,所以他们用起来感觉就和在写真正的sql一样,只是更加python
+
+## 部员和部门的多对多关系
+
+在之前的栗子,似乎一个部员只能属于最多一个部门.如果一个部员能属于多个部门呢?这是不是说一个外键就表达不了这种关系了呢?
+
+是的,一个外键是不够的.为了定义一个在部员和部门之间的多对多关系我们创建一个新的具有两个外键的关联表,一个叫'department.id'一个叫'employee.id'
+
+```python
+>>> from sqlalchemy import Column, String, Integer, ForeignKey
+>>> from sqlalchemy.orm import relationship, backref
+>>> from sqlalchemy.ext.declarative import declarative_base
+>>>
+>>>
+>>> Base = declarative_base()
+>>>
+>>>
+>>> class Department(Base):
+...     __tablename__ = 'department'
+...     id = Column(Integer, primary_key=True)
+...     name = Column(String)
+...     employees = relationship('Employee', secondary='department_employee')
+...
+>>>
+>>> class Employee(Base):
+...     __tablename__ = 'employee'
+...     id = Column(Integer, primary_key=True)
+...     name = Column(String)
+...     departments = relationship('Department', secondary='department_employee')
+...
+>>>
+>>> class DepartmentEmployee(Base):
+...     __tablename__ = 'department_employee'
+...     department_id = Column(Integer, ForeignKey('department.id'), primary_key=True)
+...     employee_id = Column(Integer, ForeignKey('employee.id'), primary_key=True)
+...
+>>> from sqlalchemy import create_engine
+>>> engine = create_engine('sqlite:///')
+>>> from sqlalchemy.orm import sessionmaker
+>>> session = sessionmaker()
+>>> session.configure(bind=engine)
+>>> Base.metadata.create_all(engine)
+>>>
+>>> s = session()
+>>> john = Employee(name='john')
+>>> s.add(john)
+>>> it_department = Department(name='IT')
+>>> it_department.employees.append(john)
+>>> s.add(it_department)
+>>> s.commit()
+```
+
+在上面这个栗子中,我们创建了一个关系表,有两个外键.这个关系表'department_employee' 连结了'department' 和 'employee' ....后面一堆罗里吧嗦的话
+
+我们可以用下面的查询测试我们的设置
+
+```python
+>>> john = s.query(Employee).filter(Employee.name == 'john').one()
+>>> john.departments
+[]
+>>> john.departments[0].name
+u'IT'
+>>> it = s.query(Department).filter(Department.name == 'IT').one()
+>>> it.employees
+[]
+>>> it.employees[0].name
+u'john'
+```
+
+现在我们插入一个部员和另一个部门在db中
+
+```python
+>>> marry = Employee(name='marry')
+>>> financial_department = Department(name='financial')
+>>> financial_department.employees.append(marry)
+>>> s.add(marry)
+>>> s.add(financial_department)
+>>> s.commit()
+
+```
+
+找到所有属于IT部门的,我们可以这样:
+
+```python
+>>> s.query(Employee).filter(Employee.departments.any(Department.name == 'IT')).one().name
+u'john'
+```
+
+或者使用表达式语言
+
+```python
+>>> find_employees = select([DepartmentEmployee.employee_id]).select_from(Department.__table__.join(DepartmentEmployee)).where(Department.name == 'IT')
+>>> rs = s.execute(find_employees)
+>>> rs.fetchone()
+(1,)
+>>> rs.fetchone()
+```
+
