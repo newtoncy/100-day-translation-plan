@@ -66,4 +66,57 @@ fig, ax_lst = plt.subplots(2, 2)  # a figure with a 2x2 grid of Axes
 
 ### 轴
 
-这是线性的数值状的对象(???无法想象是个啥).它负责设置图的约束和生成刻度(标记在数轴上的)和刻度标签(标记刻度的字串)
+这是线性的数值状的对象(???无法想象是个啥).它负责设置图的约束和生成刻度(标记在数轴上的)和刻度标签(标记刻度的字串).刻度的位置是由Lacator对象决定的,坐标轴刻度的标示是由Formatter对象格式化的,正确的Formatter和Lacator对象的组合能很好的控制刻度的为中和显示
+
+### 画师
+
+基本上,你在图像中看到的每一样东西都是一个画师(甚至图像,轴集,和轴对象).它包括了文字对象,二维线对象,集合对象,批次对象...(你懂的).当讴歌图像渲染,所有的画师都在canvas上绘制.多数画师绑定了一个轴集,多个轴不能共享一个艺术家,或者把一个艺术家移到另一个上.
+
+## 绘制函数的输入类型
+
+所有的绘图函数都需要`np.array` 或 `np.ma.masked_array` 作为输入.经典的"数组类似"的类型比如 [`pandas`](https://pandas.pydata.org/pandas-docs/stable/index.html#module-pandas)数据对象和 `np.matrix`可能会也可能不会像预期的那样工作. 所以最好在绘图之前将他们转化成`np.array` 对象
+
+举个栗子,转化一个 [`pandas.DataFrame`](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html#pandas.DataFrame)
+
+```python
+a = pandas.DataFrame(np.random.rand(4,5), columns = list('abcde'))
+a_asndarray = a.values
+```
+
+以及转化一个 `np.matrix`
+
+```python
+b = np.matrix([[1,2],[3,4]])
+b_asarray = np.asarray(b)
+```
+
+## Matplotlib, pyplot 和pylab:他们有怎样的关系
+
+matplotlib是一个完整的包,; [`matplotlib.pyplot`](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot)是包中的一个模块,pylab是一个会和matplotlib一起安装的一个模块.
+
+pyplot提供一个state-machine接口到底层的面向对象绘图库.这个state-machine隐式的创建图,轴集来实现预期的绘制,例如:
+
+```python
+x = np.linspace(0, 2, 100)
+
+plt.plot(x, x, label='linear')
+plt.plot(x, x**2, label='quadratic')
+plt.plot(x, x**3, label='cubic')
+
+plt.xlabel('x label')
+plt.ylabel('y label')
+
+plt.title("Simple Plot")
+
+plt.legend()  # 图例
+
+plt.show()
+```
+
+![../../_images/sphx_glr_usage_003.png](https://matplotlib.org/_images/sphx_glr_usage_003.png)
+
+第一个调用的是 `plt.plot` ,会自动的创建必要的图和轴集来实现预期的绘制.接下来调用 `plt.plot` 复用当前的轴集并每次添加一条曲线,设置标题,图例,和轴标签也是自动的用了当前的轴集并设置了标题,创建图例,和对每个轴分别创建文本框.
+
+pylab是一个方便的模块,它批量的导入了 [`matplotlib.pyplot`](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot) (为了绘图) 和 [`numpy`](https://docs.scipy.org/doc/numpy/reference/index.html#module-numpy) (为了数学计算和处理数组) 在单个命名空间中.pylab被弃用了并且强烈不建议使用它因为命名空间污染问题.用pyplot来代替它.
+
+作为非互动的绘图,很建议用pyplot来创建图然后用面向对象接口来绘图.
